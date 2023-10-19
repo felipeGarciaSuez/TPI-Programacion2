@@ -7,6 +7,7 @@ class Usuario(ABC):
         self.__surname = surname
         self.__email = email
         self.__password = password
+        self.__mis_cursos = []
 
     @property
     def password(self):
