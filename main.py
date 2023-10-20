@@ -30,12 +30,11 @@ def main():
         if opt == 1:
             res = validacion(alumnos)
 
-
         elif opt == 2:
             res = validacion(profesores)
 
         elif opt == 3:
-            print("You chose option 3")
+            mostrar_cursos(cursos)
         elif opt == 4:
             print("Gracias por usar el sistema.")
         else:

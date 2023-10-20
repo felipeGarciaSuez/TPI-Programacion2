@@ -2,43 +2,49 @@ from abc import ABC
 
 
 class Usuario(ABC):
-    def __init__(self, name: str, surname: str, email: str, password: str) -> None:
-        self.__name = name
-        self.__surname = surname
+    def __init__(self, nombre: str, apellido: str, email: str, contrasenia: str) -> None:
+        self.__nombre = nombre
+        self.__apellido = apellido
         self.__email = email
-        self.__password = password
+        self.__contrasenia = contrasenia
         self.__mis_cursos = []
 
     @property
-    def password(self):
-        return self.__password
+    def contrasenia(self):
+        return self.__contrasenia
 
     @property
-    def name(self):
-        return self.__name
+    def nombre(self):
+        return self.__nombre
 
     @property
-    def surname(self):
-        return self.__surname
+    def apellido(self):
+        return self.__apellido
 
     @property
     def email(self):
         return self.__email
 
-    @password.setter
-    def password(self, new_pass):
-        self.__password = new_pass
+    @contrasenia.setter
+    def contrasenia(self, nueva_contrasenia):
+        self.__contrasenia = nueva_contrasenia
 
-    @name.setter
-    def name(self, new_name):
-        self.__name = new_name
+    @nombre.setter
+    def nombre(self, nombre):
+        self.__nombre = nombre
 
-    @surname.setter
-    def surname(self, surname):
-        self.__surname = surname
+    @apellido.setter
+    def apellido(self, apellido):
+        self.__apellido = apellido
 
     def validar_credenciales(self, email: str, password: str) -> bool:
-        return self.__email == email and self.__password == password
+        user = False
+        res = False
+        if self.email == email:
+            user = True
+            if self.contrasenia == password:
+                res = True
+        return res, user
 
     def __str__(self) -> str:
         pass

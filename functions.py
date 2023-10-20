@@ -1,5 +1,6 @@
 from Curso import Curso
 
+# MENU
 def menu():
     print("1 - Ingresar como alumno")
     print("2 - Ingresar como profesor")
@@ -18,24 +19,33 @@ def menu_profesor():
     print("2 - Ver curso")
     print("3 - Volver al menú principal")
 
-def validacion(lista):
-    usuario = input("Ingrese su usuario: ")
+# FIN MENU
 
+# VALIDACION
+def validacion(lista):
+    email = input("Ingrese su email: ")
+    password = input("Ingrese su contraseña: ")
     res = False
-    for i in lista:
-        if i.email == usuario:
-            contrasenia = input("Ingrese su contraseña: ")
-            if i.password == contrasenia:
-                res = i
+
+    for usuario in lista:
+        res, user = usuario.validar_credenciales(email, password)
+        print(res, user)
+        if user:
+            if res:
+                print(f'Bienvenido/a {usuario.nombre}!')
+                res = usuario
             else:
-                print("Contraseña incorrecta.")
-    if res:
-        print("Bienvenido/a", res.name)
-    else:
+                print('Contraseña incorrecta.')
+            break
+    print(res)
+    if not user:
         print("Ese usuario no existe.")
         print("Si considera esto un error, comuniquese con alumnado para la verificacion de su cuenta")
+
     return res
 
+
+# CURSOS
 def carga_cursos(carrera):
     cursos = []
 
@@ -48,4 +58,6 @@ def carga_cursos(carrera):
 
     return cursos
 
-
+def mostrar_cursos(cursos):
+    for curso in cursos:
+        print(f'Materia: {curso.nombre}           Carrera:{curso.carrera.nombre}')
