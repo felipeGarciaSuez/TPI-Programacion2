@@ -20,6 +20,8 @@ alumnos.append(alumno1)
 alumnos.append(alumno2)
 profesores.append(profesor1)
 
+cursos = carga_cursos(carrera1)
+
 def main():
     opt = 0
 
@@ -28,8 +30,10 @@ def main():
         if opt == 1:
             res = validacion(alumnos)
 
+
         elif opt == 2:
-            print("You chose option 2")
+            res = validacion(profesores)
+
         elif opt == 3:
             print("You chose option 3")
         elif opt == 4:

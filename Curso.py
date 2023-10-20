@@ -1,7 +1,11 @@
+from Carrera import Carrera
+import string, random
+
 class Curso():
-    def __init__(self, nombre:str, contrasenia:str):
+    def __init__(self, nombre:str,  carrera: Carrera):
         self.__nombre = nombre
-        self.__contrasenia_matriculacion = contrasenia
+        self.__contrasenia_matriculacion = self.__generar_contrasenia()
+        self.__carrera = carrera
 
     @property
     def nombre(self):
@@ -10,7 +14,9 @@ class Curso():
     def contrasenia_matriculacion(self):
         return self.__contrasenia_matriculacion
 
-    def generar_contrasenia(self):
-        pass
+    def __generar_contrasenia(self) -> str:
+        chars = string.ascii_uppercase + string.ascii_lowercase + string.digits
+        return ''.join(random.choice(chars) for i in range(5))
+
     def __str__(self):
         return f"Este curso es de {self.nombre}"

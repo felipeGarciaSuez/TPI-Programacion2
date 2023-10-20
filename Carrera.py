@@ -1,4 +1,4 @@
-class Carrera:
+class Carrera():
     def __init__(self, nombre: str, anios: int):
         self.__nombre = nombre
         self.__cant_anios = anios
