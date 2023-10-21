@@ -61,3 +61,30 @@ def carga_cursos(carrera):
 def mostrar_cursos(cursos):
     for curso in cursos:
         print(f'Materia: {curso.nombre}           Carrera:{curso.carrera.nombre}')
+
+
+def mostrar_curso_en_lista(cursos):
+    for i, curso in enumerate(cursos):
+        print(f'{i+1} - {curso.nombre}')
+
+# FIN CURSOS
+
+# ALUMNOS
+
+def matriculacion(alumno, cursos):
+    mostrar_curso_en_lista(cursos)
+    curso_id = int(input("Ingrese el id del curso: "))
+    while curso_id > len(cursos) or curso_id <= 0:
+        curso_id = int(input("ERROR! Ingrese un id valido: "))
+    constrasenia = input("Ingrese la contraseña de matriculacion: ")
+    alumno.matricular_en_curso(cursos[curso_id - 1], constrasenia)
+
+def mostrar_cursos_alumno(alumno):
+    if alumno.mis_cursos:
+        mostrar_curso_en_lista(alumno.mis_cursos)
+        curso_id = int(input("Ingrese el id del curso que desea ver: "))
+        while curso_id > len(alumno.mis_cursos) or curso_id < 1:
+            curso_id = int(input("ERROR! Ingrese un numero valido: "))
+        print(f'Nombre: {alumno.mis_cursos[curso_id - 1].nombre}')
+    else:
+        print("No estas matriculado en ningun curso")

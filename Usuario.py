@@ -7,7 +7,6 @@ class Usuario(ABC):
         self.__apellido = apellido
         self.__email = email
         self.__contrasenia = contrasenia
-        self.__mis_cursos = []
 
     @property
     def contrasenia(self):
@@ -47,4 +46,4 @@ class Usuario(ABC):
         return res, user
 
     def __str__(self) -> str:
-        pass
+        return f"Nombre: {self.nombre} Apellido: {self.apellido} Email: {self.email} Contraseña: {self.contrasenia}"
