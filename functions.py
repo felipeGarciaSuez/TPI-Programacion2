@@ -29,7 +29,6 @@ def validacion(lista):
 
     for usuario in lista:
         res, user = usuario.validar_credenciales(email, password)
-        print(res, user)
         if user:
             if res:
                 print(f'Bienvenido/a {usuario.nombre}!')
@@ -37,7 +36,6 @@ def validacion(lista):
             else:
                 print('Contraseña incorrecta.')
             break
-    print(res)
     if not user:
         print("Ese usuario no existe.")
         print("Si considera esto un error, comuniquese con alumnado para la verificacion de su cuenta")
@@ -46,17 +44,9 @@ def validacion(lista):
 
 
 # CURSOS
-def carga_cursos(carrera):
-    cursos = []
-
-    cursos.append(Curso("Ingles I", carrera))
-    cursos.append(Curso("Ingles II", carrera))
-    cursos.append(Curso("Laboratorio I", carrera))
-    cursos.append(Curso("Laboratorio II", carrera))
-    cursos.append(Curso("Programacion I", carrera))
-    cursos.append(Curso("Programacion II", carrera))
-
-    return cursos
+def carga_cursos(carrera, nombre_curso):
+    curso = Curso(nombre_curso, carrera)
+    return curso
 
 def mostrar_cursos(cursos):
     for curso in cursos:
@@ -88,3 +78,29 @@ def mostrar_cursos_alumno(alumno):
         print(f'Nombre: {alumno.mis_cursos[curso_id - 1].nombre}')
     else:
         print("No estas matriculado en ningun curso")
+
+# FIN ALUMNOS
+
+# PROFESORES
+
+def dictar_curso_menu(profesor, carrera):
+
+    nombre_curso = input("Ingrese el nombre del curso que desea agregar: ")
+    curso = carga_cursos(carrera, nombre_curso)
+    profesor.dictar_curso(curso)
+
+    print("El curso a sido dictado con exito")
+    print(f'Nombre: {curso.nombre}')
+    print(f'Contraseña: {curso.contrasenia_matriculacion}')
+    return curso
+
+def mostrar_cursos_profesor(profesor):
+    if profesor.mis_cursos:
+        mostrar_curso_en_lista(profesor.mis_cursos)
+        curso_id = int(input("Ingrese el id del curso que desea ver: "))
+        while curso_id > len(profesor.mis_cursos) or curso_id < 1:
+            curso_id = int(input("ERROR! Ingrese un numero valido: "))
+        print(f'Nombre: {profesor.mis_cursos[curso_id - 1].nombre}')
+        print(f'Contraseña: {profesor.mis_cursos[curso_id - 1].contrasenia_matriculacion}')
+    else:
+        print("No tienes ningun curso asignado")

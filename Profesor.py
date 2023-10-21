@@ -15,5 +15,12 @@ class Profesor(Usuario):
     def anio_egreso(self):
         return self.__anio_egreso
 
+    @property
+    def mis_cursos(self):
+        return self.__mis_cursos
+
     def dictar_curso(self, curso: Curso):
         self.__mis_cursos.append(curso)
+
+    def __str__(self):
+        pass
