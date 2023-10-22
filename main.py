@@ -12,13 +12,15 @@ cursos = []
 
 carrera1 = Carrera("Tecnicatura en Programacion", 2)
 
-alumno1 = Estudiante("Agustin", "Cordoba", "1", "1234", 1234, 2021, carrera1)
+alumno1 = Estudiante("Agustin", "Cordoba", "aguscordoba@gmail.com", "1234", 1234, 2021, carrera1)
 alumno2 = Estudiante("Felipe", "Garcia", "felipegarcia@gmail.com", "1234", 1235, 2021, carrera1)
-profesor1 = Profesor("Mercedes", "Valoni", "1", "1234", "Ingeniera en Sistemas", 2020)
+profesor1 = Profesor("Mercedes", "Valoni", "mechivaloni@gmail.com", "1234", "Ingeniera en Sistemas", 2020)
+profesor2 = Profesor("Profesor", "Girafales", "profejira@gmail.com", "1234", "Ingeniera en Sistemas", 2020)
 
 alumnos.append(alumno1)
 alumnos.append(alumno2)
 profesores.append(profesor1)
+profesores.append(profesor2)
 
 cursos.append(carga_cursos(carrera1, "Ingles I"))
 cursos.append(carga_cursos(carrera1,"Ingles II"))
