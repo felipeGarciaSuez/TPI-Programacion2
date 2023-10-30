@@ -42,14 +42,16 @@ def main():
             alumno = validacion(alumnos)
             if alumno:
                 opt2 = 0
-                while opt2 != 3:
+                while opt2 != 4:
                     menu_alumno()
                     opt2 = int(input("Ingrese una opcion: "))
                     if opt2 == 1:
                         matriculacion(alumno, cursos)
                     elif opt2 == 2:
-                        mostrar_cursos_alumno(alumno)
+                        desmatriculacion(alumno, cursos)
                     elif opt2 == 3:
+                        mostrar_cursos_alumno(alumno)
+                    elif opt2 == 4:
                         print("Volviendo al menu principal...")
                     else:
                         print("Opcion incorrecta")
@@ -63,7 +65,6 @@ def main():
                     menu_profesor()
                     opt2 = int(input("Ingrese una opcion: "))
                     if opt2 == 1:
-                        pass
                         curso = dictar_curso_menu(profesor, carrera1)
                         if not curso:
                             print("No se pudo dictar el curso")

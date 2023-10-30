@@ -22,5 +22,6 @@ class Profesor(Usuario):
     def dictar_curso(self, curso: Curso):
         self.__mis_cursos.append(curso)
 
+
     def __str__(self):
         pass

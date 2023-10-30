@@ -11,8 +11,9 @@ def menu():
 
 def menu_alumno():
     print("1 - Matricularse a un curso")
-    print("2 - Ver curso")
-    print("3 - Volver al menú principal")
+    print("2 - Desmatricularse de un curso")
+    print("3 - Ver curso")
+    print("4 - Volver al menú principal")
 
 def menu_profesor():
     print("1 - Dictar curso")
@@ -37,8 +38,19 @@ def validacion(lista):
                 print('Contraseña incorrecta.')
             break
     if not user:
-        print("Ese usuario no existe.")
-        print("Si considera esto un error, comuniquese con alumnado para la verificacion de su cuenta")
+        if lista[0].__class__.__name__ == 'Profesor':
+            validacion_profesor = input("No se encontro su usuario, desea registrarse? Ingrese la clave administrativa")
+            if validacion_profesor == 'admin':
+                nombre = input("Ingrese su nombre: ")
+                apellido = input("Ingrese su apellido: ")
+                contrasenia = input("Ingrese su contraseña: ")
+                anio = int(input("Ingrese su año de egreso: "))
+                nuevo_profesor = Profesor(nombre, apellido, email, contrasenia, anio)
+                lista.append(nuevo_profesor)
+                return nuevo_profesor
+        else:
+            print("Ese usuario no existe.")
+            print("Si considera esto un error, comuniquese con alumnado para la verificacion de su cuenta")
 
     return res
 
@@ -69,6 +81,14 @@ def matriculacion(alumno, cursos):
     constrasenia = input("Ingrese la contraseña de matriculacion: ")
     alumno.matricular_en_curso(cursos[curso_id - 1], constrasenia)
 
+
+def desmatriculacion(alumno):
+    mostrar_curso_en_lista(alumno.mis_cursos)
+    curso_id = int(input("Ingrese el id del curso: "))
+    while curso_id > len(alumno.mis_cursos) or curso_id <= 0:
+        curso_id = int(input("ERROR! Ingrese un id valido: "))
+    alumno.desmatricular_en_curso(alumno.mis_cursos[curso_id - 1])
+
 def mostrar_cursos_alumno(alumno):
     if alumno.mis_cursos:
         mostrar_curso_en_lista(alumno.mis_cursos)
@@ -76,6 +96,8 @@ def mostrar_cursos_alumno(alumno):
         while curso_id > len(alumno.mis_cursos) or curso_id < 1:
             curso_id = int(input("ERROR! Ingrese un numero valido: "))
         print(f'Nombre: {alumno.mis_cursos[curso_id - 1].nombre}')
+        for archivo in reversed(alumno.mis_cursos[curso_id - 1].archivos):
+            print(f'Archivo: {archivo.nombre}')
     else:
         print("No estas matriculado en ningun curso")
 

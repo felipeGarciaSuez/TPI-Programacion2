@@ -1,5 +1,6 @@
 from Usuario import Usuario
 from Carrera import Carrera
+from Curso import Curso
 class Estudiante(Usuario):
     def __init__(self, name: str, surname: str, email: str, password: str, legajo: int, anio:int, carrera: Carrera):
         self.__legajo = legajo
@@ -22,7 +23,8 @@ class Estudiante(Usuario):
         return self.__mis_cursos
 
 
-    def matricular_en_curso(self, curso, contrasenia):
+
+    def matricular_en_curso(self, curso: Curso, contrasenia):
         if curso in self.__mis_cursos:
             print("Ya estas matriculado en este curso")
         else:
@@ -31,5 +33,8 @@ class Estudiante(Usuario):
                 print(f"Te has matriculado a {curso.nombre}")
             else:
                 print("Contraseña incorrecta")
-    def desmatricular_en_curso(self, curso):
-        self.__mis_cursos.remove(curso)
+    def desmatricular_en_curso(self, curso: Curso):
+        if curso in self.__mis_cursos:
+            self.__mis_cursos.remove(curso)
+        else:
+            print("No estas matriculado en este curso")
