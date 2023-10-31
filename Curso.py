@@ -1,18 +1,24 @@
 from Carrera import Carrera
-from archivo import Archivo
+from Archivo import Archivo
 import string, random
 
 class Curso():
-    self.__codigo = 0
-    def __prox_cod(self):
-        self.__codigo += 1
-
+    __prox_cod = int(0)
     def __init__(self, nombre:str,  carrera: Carrera):
         self.__nombre = nombre
         self.__contrasenia_matriculacion = self.__generar_contrasenia()
         self.__carrera = carrera
-        self.__codigo = self.__prox_cod()
+        self.__codigo = self.prox_cod
         self.__archivos = []
+
+
+    @property
+    def prox_cod(self):
+        Curso.__prox_cod = self.__prox_cod + 1
+        return Curso.__prox_cod
+    @property
+    def codigo(self):
+        return self.__codigo
 
     @property
     def nombre(self):
@@ -26,9 +32,7 @@ class Curso():
     @property
     def archivos(self):
         return self.__archivos
-    @property
-    def codigo(self):
-        return self.__codigo
+
 
 
     def __generar_contrasenia(self) -> str:

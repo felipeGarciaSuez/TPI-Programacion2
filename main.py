@@ -1,8 +1,8 @@
 from functions import *
 
-from Usuario import Usuario
+
 from Estudiante import Estudiante
-from Curso import Curso
+from Archivo import Archivo
 from Profesor import Profesor
 from Carrera import Carrera
 
@@ -28,6 +28,11 @@ cursos.append(carga_cursos(carrera1,"Laboratorio I"))
 cursos.append(carga_cursos(carrera1,"Laboratorio II"))
 cursos.append(carga_cursos(carrera1,"Programacion I"))
 cursos.append(carga_cursos(carrera1,"Programacion II"))
+
+
+for curso in cursos:
+    curso.agregar_archivo(Archivo("Main file", "PDF"))
+    profesor1.dictar_curso(curso)
 
 for curso in cursos:
     print(curso.nombre)

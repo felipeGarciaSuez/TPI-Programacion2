@@ -1,4 +1,5 @@
 from Curso import Curso
+from Profesor import Profesor
 
 # MENU
 def menu():
@@ -39,15 +40,19 @@ def validacion(lista):
             break
     if not user:
         if lista[0].__class__.__name__ == 'Profesor':
-            validacion_profesor = input("No se encontro su usuario, desea registrarse? Ingrese la clave administrativa")
+            validacion_profesor = input("No se encontro su usuario, desea registrarse? Ingrese la clave administrativa, si quiere volver a intentar presione enter: \n")
             if validacion_profesor == 'admin':
                 nombre = input("Ingrese su nombre: ")
                 apellido = input("Ingrese su apellido: ")
+                email_nuevo = input("Ingrese su correo: ")
                 contrasenia = input("Ingrese su contraseña: ")
+                titulo = input("Ingrese su titulo universitario: ")
                 anio = int(input("Ingrese su año de egreso: "))
-                nuevo_profesor = Profesor(nombre, apellido, email, contrasenia, anio)
+                nuevo_profesor = Profesor(nombre, apellido, email_nuevo, contrasenia,titulo,  anio)
                 lista.append(nuevo_profesor)
                 return nuevo_profesor
+            elif validacion_profesor != "":
+                print("CODIGO INCORRECTO!")
         else:
             print("Ese usuario no existe.")
             print("Si considera esto un error, comuniquese con alumnado para la verificacion de su cuenta")
@@ -123,6 +128,18 @@ def mostrar_cursos_profesor(profesor):
         while curso_id > len(profesor.mis_cursos) or curso_id < 1:
             curso_id = int(input("ERROR! Ingrese un numero valido: "))
         print(f'Nombre: {profesor.mis_cursos[curso_id - 1].nombre}')
+        print(f'Codigo: {profesor.mis_cursos[curso_id - 1].codigo}')
         print(f'Contraseña: {profesor.mis_cursos[curso_id - 1].contrasenia_matriculacion}')
+        print(f'Cantidad de archivos: {len(profesor.mis_cursos[curso_id - 1].archivos)}')
+        res = input(f'Desea agregar un archivo al curso? (s/n): ')
+        if res == 's':
+            nombre_archivo = input("Ingrese el nombre del archivo: ")
+            tipo_archivo = input("Ingrese el tipo de archivo: ")
+            profesor.mis_cursos[curso_id - 1].agregar_archivo(nombre_archivo, tipo_archivo)
+            print("El archivo se ha agregado con exito")
+
     else:
         print("No tienes ningun curso asignado")
+
+# FIN PROFESORES
+
