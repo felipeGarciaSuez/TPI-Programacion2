@@ -1,5 +1,6 @@
 from Curso import Curso
 from Profesor import Profesor
+from Archivo import Archivo
 
 # MENU
 def menu():
@@ -135,7 +136,7 @@ def mostrar_cursos_profesor(profesor):
         if res == 's':
             nombre_archivo = input("Ingrese el nombre del archivo: ")
             tipo_archivo = input("Ingrese el tipo de archivo: ")
-            profesor.mis_cursos[curso_id - 1].agregar_archivo(nombre_archivo, tipo_archivo)
+            profesor.mis_cursos[curso_id - 1].agregar_archivo(Archivo(nombre_archivo, tipo_archivo))
             print("El archivo se ha agregado con exito")
 
     else:
